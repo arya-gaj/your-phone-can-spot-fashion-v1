@@ -1,0 +1,5 @@
+ipykernel
+notebook
+black
+flake8
+isort
