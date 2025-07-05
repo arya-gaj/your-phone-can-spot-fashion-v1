@@ -18,3 +18,29 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+image_embeddings = []
+image_ids = []
+
+catalog_path = "catalog_images"
+
+for product_id in tqdm(os.listdir(catalog_path)):
+    product_dir = os.path.join(catalog_path, product_id)
+
+    if not os.path.isdir(product_dir):
+        continue
+
+    for image_name in os.listdir(product_dir):
+        image_path = os.path.join(product_dir, image_name)
+
+        try:
+            image = preprocess(Image.open(image_path)).unsqueeze(0).to(device)
+
+            with torch.no_grad():
+                embedding = model.encode_image(image).cpu().numpy().flatten()
+
+            image_embeddings.append(embedding)
+            image_ids.append((product_id, image_name))
+
+        except Exception as e:
+            print(f"Error with {image_path}: {e}")
