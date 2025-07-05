@@ -18,3 +18,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+valid_ids = set(product_df["id"])
+images_df = images_df[images_df["id"].isin(valid_ids)]
