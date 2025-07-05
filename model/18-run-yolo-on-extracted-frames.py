@@ -18,3 +18,21 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+frame_files = [os.path.join(frame_output_dir, f) for f in os.listdir(frame_output_dir) if f.endswith(".jpg")]
+
+detections = []
+
+for frame_path in frame_files:
+    results = model(frame_path)[0]
+
+    for box in results.boxes:
+        cls = int(box.cls.item())
+        conf = float(box.conf.item())
+        xyxy = box.xyxy[0].tolist()
+        detections.append({
+            "frame": frame_path,
+            "class": model.names[cls],
+            "confidence": conf,
+            "bbox": xyxy
+        })
