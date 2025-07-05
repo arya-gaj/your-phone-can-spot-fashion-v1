@@ -18,3 +18,25 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+def download_image(row):
+    product_id = row["id"]
+    image_url = row["image_url"]
+    product_dir = os.path.join(base_dir, str(product_id))
+    os.makedirs(product_dir, exist_ok=True)
+
+    try:
+        response = requests.get(image_url, timeout=5)
+
+        if response.status_code == 200:
+            img = Image.open(BytesIO(response.content)).convert("RGB")
+            image_name = os.path.basename(image_url).split("?")[0]
+            image_path = os.path.join(product_dir, image_name)
+            img.save(image_path)
+            return f"{product_id}"
+
+        else:
+            return f"{product_id} - HTTP {response.status_code}"
+
+    except Exception as e:
+        return f"{product_id} - {e}"
