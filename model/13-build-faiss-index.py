@@ -18,3 +18,14 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+import faiss
+
+embedding_matrix = np.vstack(image_embeddings).astype("float32")
+
+index = faiss.IndexFlatIP(embedding_matrix.shape[1])
+faiss.normalize_L2(embedding_matrix)
+index.add(embedding_matrix)
+
+faiss.write_index(index, "product_index.faiss")
+np.save("product_ids.npy", image_ids)
