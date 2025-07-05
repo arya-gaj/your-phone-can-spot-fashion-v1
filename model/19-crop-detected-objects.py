@@ -18,3 +18,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+cropped_dir = "detected_crops"
+os.makedirs(cropped_dir, exist_ok=True)
+
+crop_index = 0
+
+for det in detections:
+    img = Image.open(det["frame"]).convert("RGB")
+    x1, y1, x2, y2 = map(int, det["bbox"])
+    crop = img.crop((x1, y1, x2, y2))
+
+    crop_path = os.path.join(cropped_dir, f"crop_{crop_index:04}.jpg")
+    crop.save(crop_path)
+
+    det["crop_path"] = crop_path
+    crop_index += 1
