@@ -18,3 +18,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+with open("final_output.json", "r") as f:
+    data = json.load(f)
+
+from pprint import pprint
+pprint(data[0])
