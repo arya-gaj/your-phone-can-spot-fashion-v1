@@ -18,3 +18,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+index = faiss.read_index("product_index.faiss")
+image_ids = np.load("product_ids.npy", allow_pickle=True)
