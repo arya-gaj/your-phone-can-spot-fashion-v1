@@ -18,3 +18,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+import torch
+import clip
+from PIL import Image
+import os
+import numpy as np
+from tqdm import tqdm
