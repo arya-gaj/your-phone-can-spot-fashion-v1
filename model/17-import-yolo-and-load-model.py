@@ -18,3 +18,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+from ultralytics import YOLO
+from PIL import Image
+import torch
+
+model = YOLO("yolov8n.pt")
