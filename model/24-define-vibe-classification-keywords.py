@@ -18,3 +18,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+import json
+
+vibe_keywords = {
+    "Coquette": ["blush", "bows", "lace", "pink", "girly", "floral"],
+    "Y2K": ["butterfly", "metallic", "low rise", "chrome", "2000s", "bling"],
+    "Streetcore": ["oversized", "streetwear", "sneakers", "baggy", "chains"],
+    "Boho": ["flowy", "earthy", "bohemian", "fringe", "festival"],
+    "Clean Girl": ["minimal", "slicked back", "gold hoops", "neutrals"],
+    "Party Glam": ["sparkly", "glam", "night out", "heels", "makeup"],
+    "Cottagecore": ["vintage", "farm", "puff sleeves", "nature", "picnic"]
+}
