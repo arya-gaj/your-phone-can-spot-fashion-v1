@@ -18,3 +18,17 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+def classify_vibe(text):
+    text = text.lower()
+    assigned = []
+
+    for vibe, keywords in vibe_keywords.items():
+
+        for keyword in keywords:
+
+            if keyword in text:
+                assigned.append(vibe)
+                break
+
+    return assigned[:3]
