@@ -18,3 +18,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+max_threads = 20
+
+with ThreadPoolExecutor(max_workers=max_threads) as executor:
+    futures = [executor.submit(download_image, row) for _, row in images_df.iterrows()]
+
+    for f in tqdm(as_completed(futures), total=len(futures)):
+        result = f.result()
+        print(result)
