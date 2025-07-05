@@ -18,3 +18,17 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+video_folder = "videos"
+vibe_results = {}
+
+for file in os.listdir(video_folder):
+
+    if file.endswith(".json"):
+
+        with open(os.path.join(video_folder, file)) as f:
+            data = json.load(f)
+            text = data.get("caption", "") + " " + data.get("hashtags", "")
+            vibes = classify_vibe(text)
+            video_id = file.split(".")[0]
+            vibe_results[video_id] = vibes
