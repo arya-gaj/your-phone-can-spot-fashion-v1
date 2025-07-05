@@ -18,3 +18,14 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+product_embeddings = []
+
+for path in tqdm(catalog_image_paths):
+    img = preprocess(Image.open(path).convert("RGB")).unsqueeze(0).to(device)
+
+    with torch.no_grad():
+        embedding = clip_model.encode_image(img)
+        embedding = embedding / embedding.norm(dim=-1, keepdim=True)
+
+    product_embeddings.append(embedding.cpu().numpy()[0])
