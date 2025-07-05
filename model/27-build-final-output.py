@@ -18,3 +18,25 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+final_output = []
+
+for det in detections:
+    video_id = det["frame"].split("_frame")[0]
+
+    output_entry = {
+        "video_id": video_id,
+        "vibes": vibe_results.get(video_id, []),
+        "products": []
+    }
+
+    prod_entry = {
+        "type": "fashion_item",
+        "match_type": det["match_type"],
+        "matched_product_id": det["matched_product_id"],
+        "confidence": round(det["similarity"], 3),
+        "bbox": det["bbox"]
+    }
+
+    output_entry["products"].append(prod_entry)
+    final_output.append(output_entry)
