@@ -18,3 +18,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+import os
+import pandas as pd
+import requests
+from PIL import Image
+from io import BytesIO
+from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor, as_completed
