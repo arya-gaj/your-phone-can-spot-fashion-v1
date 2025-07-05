@@ -18,3 +18,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+product_df = pd.read_excel("product_data.xlsx", engine="openpyxl")
+print(product_df.head())
+
+images_df = pd.read_csv("images.csv")
+print(images_df.head())
