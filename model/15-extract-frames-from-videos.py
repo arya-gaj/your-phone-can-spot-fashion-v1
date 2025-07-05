@@ -18,3 +18,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+for file in os.listdir(video_dir):
+
+    if file.endswith(".mp4"):
+        video_path = os.path.join(video_dir, file)
+        extract_frames(video_path, frame_output_dir)
