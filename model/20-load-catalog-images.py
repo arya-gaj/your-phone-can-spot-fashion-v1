@@ -18,3 +18,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Contact: arya-gaj@proton.me
 """
+
+import faiss
+from tqdm import tqdm
+import os
+
+catalog_dir = "catalog_images"
+catalog_image_paths = []
+catalog_product_ids = []
+
+for root, _, files in os.walk(catalog_dir):
+
+    for file in files:
+
+        if file.endswith(".jpg") or file.endswith(".png"):
+            catalog_image_paths.append(os.path.join(root, file))
+            catalog_product_ids.append(os.path.basename(root))
